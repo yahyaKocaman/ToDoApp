@@ -1,9 +1,9 @@
-package com.t.todoapp.data // Kodun hangi pakette olduğunu belirtiyor.
+package com.t.todoapp.data 
 
-import androidx.room.Database // Room veritabanı kütüphanesi.
-import androidx.room.RoomDatabase // RoomDatabase sınıfı.
+import androidx.room.Database 
+import androidx.room.RoomDatabase 
 
-@Database(entities = [Book::class], version = 1, exportSchema = false) // Veritabanı yapılandırması.
-abstract class BookDatabase : RoomDatabase() { // Veritabanı sınıfı.
-    abstract fun bookDao(): BookDao // BookDao arayüzünü döner.
+@Database(entities = [Book::class], version = 1, exportSchema = false) 
+abstract class BookDatabase : RoomDatabase() { 
+    abstract fun bookDao(): BookDao 
 }
