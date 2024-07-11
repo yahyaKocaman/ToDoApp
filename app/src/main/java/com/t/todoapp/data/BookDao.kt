@@ -1,19 +1,19 @@
-package com.t.todoapp.data // Kodun hangi pakette olduğunu belirtiyor.
+package com.t.todoapp.data
 
-import androidx.room.* // Room ile ilgili gerekli kütüphaneleri ekliyor.
-import kotlinx.coroutines.flow.Flow // Flow ile ilgili kütüphaneyi ekliyor.
-
-@Dao // Bu arayüzün bir DAO (Data Access Object) olduğunu belirtiyor.
+import androidx.room.* 
+import kotlinx.coroutines.flow.Flow 
+@Dao 
 interface BookDao {
-    @Query("SELECT * FROM books") // Tablodaki tüm kitapları seçer.
-    fun getAllBooks(): Flow<List<Book>> // Kitap listesini döner, Flow ile sürekli güncellenir.
+    @Query("SELECT * FROM books") 
+    fun getAllBooks(): Flow<List<Book>> 
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE) // Çakışma olursa mevcut kaydı değiştirerek ekler.
-    suspend fun insertBook(book: Book) // Bir kitap ekler.
+    @Insert(onConflict = OnConflictStrategy.REPLACE) 
+    suspend fun insertBook(book: Book)
 
-    @Delete // Verilen kitabı siler.
-    suspend fun deleteBook(book: Book) // Bir kitabı siler.
+    @Delete 
+    suspend fun deleteBook(book: Book)
 
-    @Update // Verilen kitabı günceller.
-    suspend fun updateBook(book: Book) // Bir kitabı günceller.
+    @Update 
+    suspend fun updateBook(book: Book)
+    
 }
