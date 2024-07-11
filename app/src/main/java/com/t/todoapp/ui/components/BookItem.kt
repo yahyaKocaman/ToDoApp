@@ -7,52 +7,51 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete // Silme ikonu için.
+import androidx.compose.material.icons.filled.Delete 
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import com.t.todoapp.data.Book // Book veri sınıfı.
+import com.t.todoapp.data.Book
 
 @Composable
 fun BookItem(
-    book: Book, // Kitap verisi.
-    onUpdate: (Book, Int) -> Unit, // Güncelleme fonksiyonu, numDay parametresiyle.
-    onDelete: (Book) -> Unit // Silme fonksiyonu.
+    book: Book, 
+    onUpdate: (Book, Int) -> Unit, 
+    onDelete: (Book) -> Unit 
 ) {
     Row(
         modifier = Modifier
-            .fillMaxWidth() // Tüm genişliği kapla.
-            .padding(8.dp) // Dış kenar boşluğu.
-            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f, blue = 0.3f)) // Arka plan rengi.
-            .padding(16.dp) // İç kenar boşluğu.
+            .fillMaxWidth() 
+            .padding(8.dp) 
+            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f, blue = 0.3f)) 
+            .padding(16.dp) 
     ) {
-        Column(modifier = Modifier.weight(1f)) { // Sütun, genişlik ayarlı.
+        Column(modifier = Modifier.weight(1f)) { 
             Text(
-                text = "Book = ${book.title}", // Kitap başlığı.
-                style = MaterialTheme.typography.titleLarge, // Büyük başlık stili.
-                fontStyle = FontStyle.Italic, // İtalik yazı stili.
-                fontWeight = FontWeight.Bold // Kalın yazı tipi.
+                text = "Book = ${book.title}", 
+                style = MaterialTheme.typography.titleLarge, 
+                fontStyle = FontStyle.Italic,
+                fontWeight = FontWeight.Bold 
+            Text(
+                text = "Author =  ${book.author}", 
+                style = MaterialTheme.typography.titleMedium 
             )
             Text(
-                text = "Author =  ${book.author}", // Kitap yazarı.
-                style = MaterialTheme.typography.titleMedium // Orta boy başlık stili.
+                text = "Number of Page: ${book.numPage}", 
+                style = MaterialTheme.typography.titleSmall 
             )
             Text(
-                text = "Number of Page: ${book.numPage}", // Sayfa sayısı.
-                style = MaterialTheme.typography.titleSmall // Küçük boy başlık stili.
-            )
-            Text(
-                text = "Number of Days Read: ${book.numDay}", // Okuma süresi (gün).
-                style = MaterialTheme.typography.titleSmall // Küçük boy başlık stili.
+                text = "Number of Days Read: ${book.numDay}", 
+                style = MaterialTheme.typography.titleSmall
             )
         }
         Checkbox(
-            checked = book.isRead, // Okunmuş mu?
+            checked = book.isRead, 
             onCheckedChange = { checked ->
-                onUpdate(book.copy(isRead = checked), book.numDay.toInt()) // Kitap durumu güncellenir, numDay ile.
+                onUpdate(book.copy(isRead = checked), book.numDay.toInt()) 
             }
         )
-        IconButton(onClick = { onDelete(book) }) { // Silme butonu.
-            Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete") // Silme ikonu.
+        IconButton(onClick = { onDelete(book) }) { 
+            Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete")
         }
     }
 }
