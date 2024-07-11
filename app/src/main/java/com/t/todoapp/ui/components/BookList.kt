@@ -1,21 +1,21 @@
 package com.t.todoapp.ui.components
 
-import androidx.compose.foundation.lazy.LazyColumn // LazyColumn bileşeni için.
-import androidx.compose.foundation.lazy.items // LazyColumn içindeki öğeler için.
-import androidx.compose.runtime.Composable // Composable fonksiyonlar için.
-import androidx.compose.ui.Modifier // Modifikasyonlar için.
-import com.t.todoapp.data.Book // Book veri sınıfı.
+import androidx.compose.foundation.lazy.LazyColumn 
+import androidx.compose.foundation.lazy.items 
+import androidx.compose.runtime.Composable 
+import androidx.compose.ui.Modifier 
+import com.t.todoapp.data.Book 
 
 @Composable
 fun BookList(
-    books: List<Book>, // Kitapların listesi.
-    onUpdate: (Book, Any?) -> Unit, // Güncelleme fonksiyonu.
-    onDelete: (Book) -> Unit, // Silme fonksiyonu.
-    modifier: Modifier = Modifier // Modifikasyon parametresi, varsayılan değeri ile.
+    books: List<Book>, 
+    onUpdate: (Book, Any?) -> Unit, 
+    onDelete: (Book) -> Unit, 
+    modifier: Modifier = Modifier 
 ) {
-    LazyColumn(modifier = modifier) { // Tembel sütun, performans için.
-        items(books) { book -> // Kitap listesi içindeki her bir kitap için.
-            BookItem(book = book, onUpdate = onUpdate, onDelete = onDelete) // BookItem bileşeni.
+    LazyColumn(modifier = modifier) { 
+        items(books) { book -> 
+            BookItem(book = book, onUpdate = onUpdate, onDelete = onDelete)
         }
     }
 }
