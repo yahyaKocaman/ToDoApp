@@ -1,82 +1,82 @@
 package com.t.todoapp.ui.screens
 
-import androidx.compose.foundation.Image // Resim ekleme işlevi.
-import androidx.compose.foundation.background // Arkaplan rengini ayarlama işlevi.
-import androidx.compose.foundation.layout.* // Layout düzenlemeleri için gerekli bileşenler.
-import androidx.compose.material3.* // Material 3 bileşenlerini kullanabilmek için gerekli bileşenler.
-import androidx.compose.runtime.Composable // Composable fonksiyonlar için gerekli işaretleyici.
-import androidx.compose.ui.Alignment // Hizalamaları belirtmek için gerekli bileşen.
-import androidx.compose.ui.Modifier // Bileşenlere modifikasyonlar eklemek için gerekli bileşen.
-import androidx.compose.ui.layout.ContentScale // İçeriğin ölçeklenme şeklini belirlemek için gerekli bileşen.
-import androidx.compose.ui.res.painterResource // Drawable kaynaklarından resim almak için gerekli bileşen.
-import androidx.navigation.NavHostController // Navigasyon işlemleri için gerekli bileşen.
-import androidx.compose.material.icons.Icons // Material ikonları için gerekli bileşen.
-import androidx.compose.material.icons.filled.ArrowBack // Geri butonu ikonu için gerekli bileşen.
-import androidx.compose.material3.ExperimentalMaterial3Api // Deneysel Material 3 API'lerini kullanabilmek için gerekli işaretleyici.
-import androidx.compose.material3.MaterialTheme // Material temalarını kullanabilmek için gerekli bileşenler.
-import androidx.compose.ui.draw.scale // Bileşenlerin boyutunu ölçeklendirme işlevi.
-import androidx.compose.ui.graphics.Color // Renkler için gerekli bileşen.
-import androidx.compose.ui.text.font.FontFamily // Yazı tipi ailesi belirtmek için gerekli bileşen.
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background 
+import androidx.compose.foundation.layout.* 
+import androidx.compose.material3.* 
+import androidx.compose.runtime.Composable 
+import androidx.compose.ui.Alignment 
+import androidx.compose.ui.Modifier 
+import androidx.compose.ui.layout.ContentScale 
+import androidx.compose.ui.res.painterResource
+import androidx.navigation.NavHostController
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack 
+import androidx.compose.material3.ExperimentalMaterial3Api 
+import androidx.compose.material3.MaterialTheme 
+import androidx.compose.ui.draw.scale 
+import androidx.compose.ui.graphics.Color 
+import androidx.compose.ui.text.font.FontFamily 
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp // Birim ölçülerini belirtmek için gerekli bileşen.
+import androidx.compose.ui.unit.dp
 
-import com.t.todoapp.R // Kaynaklar için gerekli bileşen.
-import com.t.todoapp.data.Book // Kitap veri modeli için gerekli bileşen.
+import com.t.todoapp.R 
+import com.t.todoapp.data.Book 
 
-// Bu ekran, kitap okuma istatistiklerini gösterir.
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BookStatisticsScreen(books: List<Book>, navController: NavHostController) {
-    // Okunan kitaplar filtrelenir ve toplam sayfa sayısı ile toplam gün sayısı hesaplanır.
+   
     val readBooks = books.filter { it.isRead }
     val totalPagesRead = readBooks.sumOf { it.numPage.toIntOrNull() ?: 0 }
     val totalDaysRead = readBooks.sumOf { it.numDay.toIntOrNull() ?: 0  }
 
-    Scaffold( // Ekranın genel yapısını oluşturur.
+    Scaffold( 
         topBar = {
-            TopAppBar( // Üst çubuk bileşeni.
+            TopAppBar(
                 title = {
                     Text(
-                        "Book Reading Statistics", // Metin içeriği.
+                        "Book Reading Statistics", 
                         color = Color.Black,
                         style = MaterialTheme.typography.headlineLarge.copy(
                             fontStyle = FontStyle.Italic,
                             fontFamily = FontFamily.Cursive
                         ),
-                        modifier = Modifier.background(Color.White.copy(alpha = 0.4f)) // Arka plan rengini ayarlar.
+                        modifier = Modifier.background(Color.White.copy(alpha = 0.4f)) 
                     )
                 },
                 navigationIcon = {
                     IconButton(
-                        onClick = { navController.navigateUp() }, // Geri gitme işlevi.
-                        modifier = Modifier.background(Color.White.copy(alpha = 0.4f)) // Arka plan rengini ayarlar.
+                        onClick = { navController.navigateUp() }, 
+                        modifier = Modifier.background(Color.White.copy(alpha = 0.4f)) 
                     ) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back") // Geri butonu ikonu.
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
                     }
                 }
             )
 
         },
-        content = { paddingValues -> // İçerik alanı ve kenar boşlukları belirlenir.
+        content = { paddingValues -> 
             Box(
                 modifier = Modifier
-                    .fillMaxSize() // Tüm boş alanı doldurur.
-                    .padding(paddingValues) // Kenar boşluklarını belirler.
+                    .fillMaxSize() 
+                    .padding(paddingValues) 
             ) {
                 Image(
                     modifier = Modifier
-                        .fillMaxSize() // Tüm boş alanı doldurur.
-                        .scale(1f), // Ölçekleme faktörü.
+                        .fillMaxSize() 
+                        .scale(1f),
                     painter = painterResource(id = R.drawable.kutuphane3),
-                    contentDescription = "Background image", // İçerik açıklaması.
-                    contentScale = ContentScale.Crop // İçeriği kırparak ölçekler.
+                    contentDescription = "Background image",
+                    contentScale = ContentScale.Crop 
                 )
                 Column(
                     modifier = Modifier
-                        .align(Alignment.Center) // Ortaya hizalar.
-                        .background(Color.White.copy(alpha = 0.4f)) // Arka plan rengini belirler.
-                        .padding(16.dp) // Kenar boşluklarını belirler.
+                        .align(Alignment.Center) 
+                        .background(Color.White.copy(alpha = 0.4f)) 
+                        .padding(16.dp) 
                 ) {
                     Text(
                         text = "Total Pages Read: $totalPagesRead",
@@ -85,16 +85,16 @@ fun BookStatisticsScreen(books: List<Book>, navController: NavHostController) {
                             fontWeight = FontWeight.Bold,
                             color = Color.Black
                         ),
-                        modifier = Modifier.padding(8.dp) // Kenar boşluklarını belirler.
+                        modifier = Modifier.padding(8.dp) 
                     )
                     Text(
                         text = "Total Days Read: $totalDaysRead",
                         style = MaterialTheme.typography.headlineMedium.copy(
                             fontStyle = FontStyle.Italic,
                             fontWeight = FontWeight.Bold,
-                            color = Color.Black // Metin rengi.
+                            color = Color.Black 
                         ),
-                        modifier = Modifier.padding(8.dp) // Kenar boşluklarını belirler.
+                        modifier = Modifier.padding(8.dp) 
                     )
                 }
             }
